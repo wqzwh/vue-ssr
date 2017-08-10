@@ -14,9 +14,12 @@ export default {
 	created(){
 		this.wq()
 	},
+  mounted(){
+    // console.log('mounted',this)
+  },
 	data () {
 	    return {
-	      num: 1
+	      num: 2
 	    }
 	  },
 	asyncData ({ store, route }) {
@@ -27,14 +30,14 @@ export default {
     // 从 store 的 state 对象中的获取 item。
     item () {
     	// console.log(this);
-      return this.$store.state.items
+      return this.$store.state.Home.items
     }
   },
   methods:{
     	wq(){
-    		this.num++;	
+    		this.num++;
     	}
     }
-  
+
 }
 </script>

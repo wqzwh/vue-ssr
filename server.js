@@ -5,6 +5,7 @@ const LRU = require('lru-cache')
 const resolve = file => path.resolve(__dirname, file)
 const { createBundleRenderer } = require('vue-server-renderer')
 const fs = require('fs')
+const net = require('net')
 
 const template = fs.readFileSync('./src/index.template.html', 'utf-8')
 const isProd = process.env.NODE_ENV === 'production'
@@ -66,4 +67,66 @@ server.get('*', (req, res) => {
     res.end(html)
   })
 })
-server.listen(8080)
+
+function probe(port, callback) {
+
+    var servers = net.createServer().listen(port)
+
+    var calledOnce = false
+
+    var timeoutRef = setTimeout(function() {
+        calledOnce = true
+        callback(false, port)
+    }, 2000)
+
+    timeoutRef.unref()
+
+    var connected = false
+
+    servers.on('listening', function() {
+        clearTimeout(timeoutRef)
+
+        if (servers)
+            servers.close()
+
+        if (!calledOnce) {
+            calledOnce = true
+            callback(true, port)
+        }
+    })
+
+    servers.on('error', function(err) {
+        clearTimeout(timeoutRef)
+
+        var result = true
+        if (err.code === 'EADDRINUSE')
+            result = false
+
+        if (!calledOnce) {
+            calledOnce = true
+            callback(result, port)
+        }
+    })
+}
+var checkPortPromise = new Promise((resolve) => {
+    (function serverport(_port) {
+        var pt = _port || 8080;
+        probe(pt, function(bl, _pt) {
+            // 端口被占用 bl 返回false
+            // _pt：传入的端口号
+            if (bl === true) {
+                // console.log("\n  Static file server running at" + "\n\n=> http://localhost:" + _pt + '\n');
+                resolve(_pt);
+            } else {
+                serverport(_pt + 1)
+            }
+        })
+    })()
+
+})
+checkPortPromise.then(data => {
+    uri = 'http://localhost:' + data;
+    console.log('启动服务路径'+uri)
+    server.listen(data);
+});
+// server.listen(8080)

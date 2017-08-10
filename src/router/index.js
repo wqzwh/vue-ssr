@@ -14,6 +14,11 @@ export function createRouter() {
             name:'item',
             component: () =>
                 import ('../components/Item.vue')
+        },{
+            path: '/demo',
+            name:'demo',
+            component: () =>
+                import ('../components/demo/demo.vue')
         }]
     })
 }
