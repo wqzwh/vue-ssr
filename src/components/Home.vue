@@ -1,11 +1,14 @@
 <template>
 	<div>
 		{{item.key}}
-		{{num}}
-		<button type="btn" @click="wq">点击</button>
+		{{num}}777
+		<v-button @on-click="wq">点击</v-button>
 	</div>
 </template>
 <script>
+import {Button} from '../lib/fez/fezui';
+
+let vButton = Button;
 export default {
 	name:'home',
 	beforeCreate(){
@@ -17,6 +20,9 @@ export default {
   mounted(){
     // console.log('mounted',this)
   },
+  components: {
+      vButton
+    },
 	data () {
 	    return {
 	      num: 2

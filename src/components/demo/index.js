@@ -15,7 +15,7 @@ export default {
         const data = {
           moduleName: M['NAME'],
           moduleIcon: M['ICON'],
-          moduleData: res
+          moduleData: res.data
         }
         resolve(data);
       });

@@ -1,17 +1,21 @@
 <template>
     <div class="demo">
-
+      <v-button>按钮</v-button>
     </div>
 </template>
 <script>
-import Service from './index'
+import Service from './index';
+
+import {Button} from '../../lib/fez/fezui';
+
+let vButton = Button;
 
 export default {
 
     name: 'demo',
 
     components: {
-
+      vButton
     },
 
     data() {

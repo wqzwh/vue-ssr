@@ -1,4 +1,4 @@
 module.exports = {
-    HOST: "http://test.123.com",
+    HOST: "http://123.jd.com",
     DEBUGMOCK: true
 };
