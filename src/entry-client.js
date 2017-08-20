@@ -1,6 +1,7 @@
 import { createApp } from './app'
 import Q from 'q';
 const { app, router, store } = createApp()
+console.log(router)
 router.onReady(() => {
   router.beforeResolve((to, from, next) => {
       const matched = router.getMatchedComponents(to)
@@ -26,6 +27,7 @@ router.onReady(() => {
     })
     app.$mount('#app')
 })
+// 将服务端渲染时候的状态写入vuex中
 if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }

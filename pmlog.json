@@ -1,0 +1,11 @@
+{
+  "name": "test",
+  "script": "./server.js",
+  "exec_mode": "cluster",
+  "error_file": "./log/err.log",
+  "out_file": "./log/out.log",
+  "merge_logs": true,
+  "log_data_format":"YYYY-MM-DD HH:mm: Z",
+  "instances":4,
+  "watch":true
+}

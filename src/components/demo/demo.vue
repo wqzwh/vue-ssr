@@ -1,6 +1,8 @@
 <template>
     <div class="demo">
-      <v-button>按钮</v-button>
+      <v-button>我是按钮</v-button>
+      <v-button>我是按钮11</v-button>
+      <v-button>我是按钮22</v-button>
     </div>
 </template>
 <script>
