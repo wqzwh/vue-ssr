@@ -10,57 +10,72 @@
 - 项目整体目录结构
 
 ````bash
+├── LICENSE
+├── README.md
 ├── build
 │   ├── setup-dev-server.js
 │   ├── vue-loader.config.js
 │   ├── webpack.base.config.js
 │   ├── webpack.client.config.js
 │   └── webpack.server.config.js
-├── dist
+├── log
+│   ├── err.log
+│   └── out.log
 ├── package.json
+├── pmlog.json
 ├── server.js
 └── src
     ├── App.vue
     ├── app.js
-    ├── assets
-    │   ├── images
-    │   └── style
     ├── components
-    │   ├── Home.vue
-    │   ├── Item.vue
-    │   ├── conf.js
-    │   └── demo
-    │       ├── conf.js
-    │       ├── demo.vue
-    │       ├── index.js
-    │       └── mock.js
     ├── entry-client.js
     ├── entry-server.js
     ├── index.template.html
+    ├── lib
+    │   └── fez
+    │       ├── fezui.js
+    │       └── styles
+    │           ├── css
+    │           │   └── fezui.css
+    │           └── fonts
+    │               ├── icomoon.eot
+    │               ├── icomoon.svg
+    │               ├── icomoon.ttf
+    │               ├── icomoon.woff
+    │               ├── ionicons.eot
+    │               ├── ionicons.svg
+    │               ├── ionicons.ttf
+    │               └── ionicons.woff
     ├── public
-    │   ├── components
     │   ├── conf.js
     │   └── utils
     │       └── api.js
     ├── router
     │   └── index.js
-    └── store
-        ├── actions.js
-        ├── getters.js
-        ├── index.js
-        ├── modules
-        │   └── Home.js
-        ├── mutationtypes.js
-        └── state.js      
+    ├── store
+    │   ├── actions.js
+    │   ├── getters.js
+    │   ├── index.js
+    │   ├── modules
+    │   │   └── Home.js
+    │   ├── mutationtypes.js
+    │   └── state.js
+    └── views
+        └── demo
+            ├── conf.js
+            ├── index.vue
+            ├── mock.js
+            └── service.js    
         
 ````
 
 ### 统一的职责划分
 
-- components文件夹下分模块文件，模块文件下下又分模块本身的.vue文件（模版文件），index.js文件（后台数据交互文件），mock.js（本模块的mock假数据），conf.js（配置本模块一些参数，请求路径，模块名称等信息）
+- views文件夹下分模块文件，模块文件下下又分模块本身的.vue文件（模版文件），index.js文件（后台数据交互文件），mock.js（本模块的mock假数据），conf.js（配置本模块一些参数，请求路径，模块名称等信息）
+- components公共组件文件夹
 - router文件夹下是路由配置
 - store文件夹下是数据流状态配置
-- public文件夹是公共模块（包含公共组件，工具类函数等）
+- public文件夹是公共模块（包含混合，工具类函数等）
 
 ### 开发自动化
 
@@ -106,9 +121,19 @@ npm install
 - 在项目目录下执行
 
 ```bash
+// 打包命令
 npm run build
 ```
 ```bash
+// production模式下启动服务
 npm run start
+```
+```bash
+// dev模式下启动服务
+npm run dev
+```
+```bash
+// 打包之后本地测试
+npm run wq
 ```
 ## 待续...

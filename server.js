@@ -6,15 +6,18 @@ const resolve = file => path.resolve(__dirname, file)
 const { createBundleRenderer } = require('vue-server-renderer')
 const fs = require('fs')
 const net = require('net')
+const http = require('http');
+const compression = require('compression');
 
-const template = fs.readFileSync('./src/index.template.html', 'utf-8')
+
+// const template = fs.readFileSync('./src/index.template.html', 'utf-8')
 const isProd = process.env.NODE_ENV === 'production'
 
 const server = express()
 
 function createRenderer (bundle, options) {
   return createBundleRenderer(bundle, Object.assign(options, {
-    template,
+    template: require('fs').readFileSync('./src/index.template.html', 'utf-8'),
     cache: LRU({
       max: 1000,
       maxAge: 1000 * 60 * 15
@@ -25,11 +28,6 @@ function createRenderer (bundle, options) {
 }
 
 let renderer;
-
-// const bundle = require('./dist/vue-ssr-server-bundle.json');
-// const clientManifest = require('./dist/vue-ssr-client-manifest.json')
-
-// renderer = createRenderer(bundle,{clientManifest})
 
 let readyPromise
 if (isProd) {
@@ -45,18 +43,16 @@ if (isProd) {
 }
 
 
-
-
 const serve = (path, cache) => express.static(resolve(path), {
   maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
 })
-
+server.use(compression())
 server.use('/dist', serve('./dist', true))
 
 
 server.get('*', (req, res) => {
   const context = {
-    title: 'hello',
+    title: '默认title',
     url: req.url
   }
   renderer.renderToString(context, (err, html) => {
@@ -109,8 +105,9 @@ function probe(port, callback) {
     })
 }
 var checkPortPromise = new Promise((resolve) => {
-    (function serverport(_port) {
-        var pt = _port || 8080;
+    (function serverport(_port = 6180) {
+        // var pt = _port || 8080;
+        var pt = _port;
         probe(pt, function(bl, _pt) {
             // 端口被占用 bl 返回false
             // _pt：传入的端口号
@@ -129,4 +126,3 @@ checkPortPromise.then(data => {
     console.log('启动服务路径'+uri)
     server.listen(data);
 });
-// server.listen(8080)

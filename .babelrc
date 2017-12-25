@@ -1,8 +1,14 @@
 {
   "presets": [
-    ["env", { "modules": false }]
+    ["env", { "modules": false }],
+    "stage-2"
   ],
-  "plugins": [
-    "syntax-dynamic-import"
-  ]
+  "plugins": ["syntax-dynamic-import","transform-runtime"],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2"],
+      "plugins": [ "istanbul" ]
+    }
+  }
 }

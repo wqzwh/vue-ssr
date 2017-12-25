@@ -1,7 +1,28 @@
 import { createApp } from './app'
-import Q from 'q';
+import Q from 'q'
+import Vue from 'vue'
+
+Vue.mixin({
+  beforeRouteUpdate (to, from, next) {
+    const { asyncData } = this.$options
+    if (asyncData) {
+      asyncData({
+        store: this.$store,
+        route: to
+      }).then(next).catch(next)
+    } else {
+      next()
+    }
+  }
+})
+
 const { app, router, store } = createApp()
-console.log(router)
+
+// 将服务端渲染时候的状态写入vuex中
+if (window.__INITIAL_STATE__) {
+  store.replaceState(window.__INITIAL_STATE__)
+}
+
 router.onReady(() => {
   router.beforeResolve((to, from, next) => {
       const matched = router.getMatchedComponents(to)
@@ -27,7 +48,3 @@ router.onReady(() => {
     })
     app.$mount('#app')
 })
-// 将服务端渲染时候的状态写入vuex中
-if (window.__INITIAL_STATE__) {
-  store.replaceState(window.__INITIAL_STATE__)
-}
