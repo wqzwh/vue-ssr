@@ -10,14 +10,14 @@ const http = require('http');
 const compression = require('compression');
 
 
-// const template = fs.readFileSync('./src/index.template.html', 'utf-8')
+const template = fs.readFileSync('./src/index.template.html', 'utf-8')
 const isProd = process.env.NODE_ENV === 'production'
 
 const server = express()
 
 function createRenderer (bundle, options) {
   return createBundleRenderer(bundle, Object.assign(options, {
-    template: require('fs').readFileSync('./src/index.template.html', 'utf-8'),
+    template: template,
     cache: LRU({
       max: 1000,
       maxAge: 1000 * 60 * 15

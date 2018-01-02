@@ -5,20 +5,10 @@ export function createRouter() {
     return new Router({
         mode: 'history',
         routes: [{
-            name:'home',
+            name:'Home',
             path: '/',
             component: () =>
-                import ('../components/Home.vue')
-        },{
-            path: '/item',
-            name:'item',
-            component: () =>
-                import ('../components/Item.vue')
-        },{
-            path: '/demo',
-            name:'demo',
-            component: () =>
-                import ('../components/demo/demo.vue')
+                import ('../views/index/index.vue')
         }]
     })
 }
