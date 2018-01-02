@@ -3,6 +3,7 @@ import App from './App.vue'
 import { createRouter } from './router'
 import { createStore } from './store'
 import { sync } from 'vuex-router-sync'
+require('./assets/style/css.less');
 export function createApp () {
   // 创建 router 和 store 实例
   const router = createRouter()

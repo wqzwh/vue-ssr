@@ -1,31 +1,43 @@
 <template>
-  <div>1111111</div>
+  <div class="g-bd">
+    <div id="j-bd">
+      <div class="g-row m-index">
+        <v-header/>
+        <v-banner/>
+        <v-floor-one/>
+        <v-bottom-nav/>
+      </div>
+    </div>  
+  </div>
 </template>
 <script>
 // import Service from './service'
+require('@/assets/views/index.css');
+import vHeader from '@/components/Header.vue';
+import vBanner from '@/components/Banner.vue';
+import vFloorOne from '@/components/FloorOne.vue';
+import vBottomNav from '@/components/BottomNav.vue';
 
 export default {
-  name: 'Index',
+  name: "Index",
+  components: {
+    vHeader,
+    vBanner,
+    vFloorOne,
+    vBottomNav
+  },
   data() {
     return {
-      value: ''
-    }
+      value: ""
+    };
   },
-  mounted() {
-    
-  },
-  watch: {
-    
-  },
-  methods: {
-    
-  }
-}
-
+  mounted() {},
+  watch: {},
+  methods: {}
+};
 </script>
 <style lang="less" scoped>
 .mint-field {
-  background: #666
+  background: #666;
 }
-
 </style>

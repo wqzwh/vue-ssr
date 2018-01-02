@@ -48,11 +48,12 @@ const serve = (path, cache) => express.static(resolve(path), {
 })
 server.use(compression())
 server.use('/dist', serve('./dist', true))
+server.use('/static', serve('./src/static', true))
 
 
 server.get('*', (req, res) => {
   const context = {
-    title: '默认title',
+    title: '网易严选',
     url: req.url
   }
   renderer.renderToString(context, (err, html) => {
