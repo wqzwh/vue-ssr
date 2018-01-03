@@ -141,4 +141,4 @@ npm run dev 启动服务路径http://localhost:6180
 
 以下是最终效果截图
 
-! [最终效果图] (https://github.com/wqzwh/ga-vue-ssr/blob/master/src/static/img/demo.jpeg)
+![最终效果图](https://github.com/wqzwh/ga-vue-ssr/blob/master/src/static/img/demo.jpeg)
