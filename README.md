@@ -27,31 +27,32 @@
 └── src
     ├── App.vue
     ├── app.js
+    ├── assets
+    │   ├── images
+    │   ├── style
+    │   │   └── css.less
+    │   └── views
+    │       └── index.css
     ├── components
+    │   ├── Banner.vue
+    │   ├── BottomNav.vue
+    │   ├── FloorOne.vue
+    │   └── Header.vue
     ├── entry-client.js
     ├── entry-server.js
     ├── index.template.html
-    ├── lib
-    │   └── fez
-    │       ├── fezui.js
-    │       └── styles
-    │           ├── css
-    │           │   └── fezui.css
-    │           └── fonts
-    │               ├── icomoon.eot
-    │               ├── icomoon.svg
-    │               ├── icomoon.ttf
-    │               ├── icomoon.woff
-    │               ├── ionicons.eot
-    │               ├── ionicons.svg
-    │               ├── ionicons.ttf
-    │               └── ionicons.woff
     ├── public
     │   ├── conf.js
     │   └── utils
-    │       └── api.js
+    │       ├── api.js
+    │       └── confUtils.js
     ├── router
     │   └── index.js
+    ├── static
+    │   ├── img
+    │   │   └── favicon.ico
+    │   └── js
+    │       └── flexible.js
     ├── store
     │   ├── actions.js
     │   ├── getters.js
@@ -61,11 +62,11 @@
     │   ├── mutationtypes.js
     │   └── state.js
     └── views
-        └── demo
+        └── index
             ├── conf.js
             ├── index.vue
             ├── mock.js
-            └── service.js    
+            └── service.js  
         
 ````
 
@@ -76,6 +77,7 @@
 - router文件夹下是路由配置
 - store文件夹下是数据流状态配置
 - public文件夹是公共模块（包含混合，工具类函数等）
+- static文件夹代表静态文件，不会被webpack打包的
 
 ### 开发自动化
 
@@ -83,7 +85,6 @@
 - 自动化编译ES6或CommonJS标准的JS代码，自动化生成source map便于浏览器端调试。
 - 自动化编译SASS/LESS => CSS文件，自动化添加CSS3的各种浏览器前缀。
 - 服务端使用express，前端使用webpack自动化构建打包。
-
 
 ## 安装使用
 
@@ -116,7 +117,6 @@ npm install webpack -g
 npm install
 ```
 
-
 #### 运行 Demo 示例
 
 - 在项目目录下执行
@@ -137,4 +137,8 @@ npm run dev
 // 打包之后本地测试
 npm run wq
 ```
-## 待续...
+npm run dev 启动服务路径http://localhost:6180
+
+以下是最终效果截图
+
+! [最终效果图] (demo)
