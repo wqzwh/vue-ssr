@@ -4,11 +4,11 @@
     "stage-2"
   ],
   "plugins": ["syntax-dynamic-import","transform-runtime"],
-  "comments": false,
-  "env": {
-    "test": {
-      "presets": ["env", "stage-2"],
-      "plugins": [ "istanbul" ]
-    }
-  }
+  "comments": false
+  // "env": {
+  //   "test": {
+  //     "presets": ["env", "stage-2"],
+  //     "plugins": [ "istanbul" ]
+  //   }
+  // }
 }
