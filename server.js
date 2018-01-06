@@ -66,26 +66,19 @@ server.get('*', (req, res) => {
 })
 
 function probe(port, callback) {
-
-    var servers = net.createServer().listen(port)
-
-    var calledOnce = false
-
-    var timeoutRef = setTimeout(function() {
+    let servers = net.createServer().listen(port)
+    let calledOnce = false
+    let timeoutRef = setTimeout(function() {
         calledOnce = true
         callback(false, port)
     }, 2000)
-
     timeoutRef.unref()
-
-    var connected = false
+    let connected = false
 
     servers.on('listening', function() {
         clearTimeout(timeoutRef)
-
         if (servers)
             servers.close()
-
         if (!calledOnce) {
             calledOnce = true
             callback(true, port)
@@ -94,21 +87,19 @@ function probe(port, callback) {
 
     servers.on('error', function(err) {
         clearTimeout(timeoutRef)
-
-        var result = true
+        let result = true
         if (err.code === 'EADDRINUSE')
             result = false
-
         if (!calledOnce) {
             calledOnce = true
             callback(result, port)
         }
     })
 }
-var checkPortPromise = new Promise((resolve) => {
+const checkPortPromise = new Promise((resolve) => {
     (function serverport(_port = 6180) {
-        // var pt = _port || 8080;
-        var pt = _port;
+        // let pt = _port || 8080;
+        let pt = _port;
         probe(pt, function(bl, _pt) {
             // 端口被占用 bl 返回false
             // _pt：传入的端口号
