@@ -9,7 +9,7 @@ const mData = {
         "code": 200,
         "data": {
           "pin": 'wangqi',
-          "erpName": '王奇'
+          "name": '王奇'
         }
       }
     }
