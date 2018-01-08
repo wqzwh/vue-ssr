@@ -139,10 +139,7 @@ npm run start
 // dev模式下启动服务
 npm run dev
 ```
-```bash
-// 打包之后本地测试
-npm run wq
-```
+
 npm run dev 启动服务路径http://localhost:6180
 
 ### 发布部署
