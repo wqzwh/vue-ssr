@@ -17,12 +17,9 @@ module.exports = {
     chunkFilename: '[name].[chunkhash].js'
   },
   resolve: {
-    // alias: {
-    //   'public': path.resolve(__dirname, '../public')
-    // }
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'echarts': 'echarts/dist/echarts.common.min.js',
+      // 'echarts': 'echarts/dist/echarts.common.min.js',
       'vue': 'vue/dist/vue.runtime.min.js',
       '@': path.resolve('src'),
       'R': path.resolve('src/components')
@@ -57,12 +54,6 @@ module.exports = {
           }) :
           ['vue-style-loader', 'css-loader', 'less-loader']
       }
-      // {
-      //   test: /\.(less|css)$/,
-      //   use: isProd ?
-      //     ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader') :
-      //     ['vue-style-loader', 'css-loader', 'less-loader']
-      // }
     ]
   },
   performance: {

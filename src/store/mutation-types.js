@@ -1,1 +1,1 @@
-export const CHUSHIHUA = 'CHUSHIHUA';
+export const SET_LOGIN_INFO = 'SET_LOGIN_INFO';

@@ -7,9 +7,9 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 const config = merge(base, {
     entry: {
         app: './src/entry-client.js',
-        echarts: ['echarts'], // 代码分离 vender 分离
+        // echarts: ['echarts'], // 代码分离 vender 分离
         vendors: ['lodash', 'axios'],
-        vues: ['vue', 'vuex', 'vue-router', 'mint-ui']
+        vues: ['vue', 'vuex', 'vue-router']
     },
     plugins: [
         // strip dev-only code in Vue source
@@ -32,7 +32,7 @@ const config = merge(base, {
         //     }
         // }),
         new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendors', 'echarts', 'vues'],
+            names: ['vendors', 'vues'],
             minChunks: 3
         }),
         // 重要信息：这将 webpack 运行时分离到一个引导 chunk 中，
@@ -41,7 +41,7 @@ const config = merge(base, {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',
             // minChunks: Infinity
-            chunks: ['vendors', 'echarts', 'vues']
+            chunks: ['vendors', 'vues']
         }),
         // 此插件在输出目录中
         // 生成 `vue-ssr-client-manifest.json`。
