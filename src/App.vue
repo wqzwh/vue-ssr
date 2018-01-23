@@ -6,13 +6,7 @@
   </div>
 </template>
 <script>
-import Vue from 'vue';
 export default {
-	name:'APP',
-	data(){
-		return {
-
-		}
-	}
+	name:'APP'
 }
 </script>
