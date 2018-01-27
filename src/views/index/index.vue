@@ -11,8 +11,7 @@
   </div>
 </template>
 <script>
-// import Service from './service'
-require('@/assets/views/index.css');
+import '@/assets/views/index.css';
 import vHeader from '@/components/Header.vue';
 import vBanner from '@/components/Banner.vue';
 import vFloorOne from '@/components/FloorOne.vue';

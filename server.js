@@ -49,6 +49,7 @@ const serve = (path, cache) => express.static(resolve(path), {
 server.use(compression())
 server.use('/dist', serve('./dist', true))
 server.use('/static', serve('./src/static', true))
+server.use('/service-worker.js', serve('./dist/service-worker.js'))
 
 
 server.get('*', (req, res) => {
