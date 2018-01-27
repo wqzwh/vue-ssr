@@ -2,10 +2,10 @@
   <div class="g-bd">
     <div id="j-bd">
       <div class="g-row m-index">
-        <v-header/>
+        <v-header :nav-data="headNavData"/>
         <v-banner/>
         <v-floor-one/>
-        <v-bottom-nav/>
+        <v-bottom-nav :bot-nav-data="botNavData"/>
       </div>
     </div>  
   </div>
@@ -16,6 +16,7 @@ import vHeader from '@/components/Header.vue';
 import vBanner from '@/components/Banner.vue';
 import vFloorOne from '@/components/FloorOne.vue';
 import vBottomNav from '@/components/BottomNav.vue';
+import Service from './service';
 
 export default {
   name: "Index",
@@ -27,12 +28,25 @@ export default {
   },
   data() {
     return {
-      value: ""
+      headNavData: [],
+      botNavData: []
     };
+  },
+  created() {
+    this.serviceGet()
   },
   mounted() {},
   watch: {},
-  methods: {}
+  methods: {
+    serviceGet() {
+      Service.get().then((data) => {
+        this.headNavData = data;
+      })
+      Service.getBottom().then((data) => {
+        this.botNavData = data;
+      })
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

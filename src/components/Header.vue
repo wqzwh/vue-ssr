@@ -26,38 +26,8 @@
           <header>
             <div class="inner" style="position:relative;height:100%;width:100%;overflow-x: auto;">
               <div class="list" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
-                <div class="tab active">
-                  <span class="txt">推荐</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">居家</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">餐厨</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">配件</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">服装</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">电器</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">洗护</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">杂货</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">饮食</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">婴童</span>
-                </div>
-                <div class="tab">
-                  <span class="txt">志趣</span>
+                <div :class="item.type === 0 ? 'tab active' : 'tab'" v-for="(item, index) in navData" :key="index">
+                  <span class="txt">{{item.name}}</span>
                 </div>
               </div>
             </div>
@@ -70,6 +40,14 @@
 <script>
   export default {
     name: 'Header',
+    props: {
+      navData: {
+        type: Array,
+        default() {
+          return []
+        }
+      }
+    },
     data() {
       return {
 

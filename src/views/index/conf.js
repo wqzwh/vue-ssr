@@ -16,6 +16,7 @@ const MODULECONF = {
     MOCK: true,
     API: {
       GET: '/api/home',
+      GETBOTTOM: '/api/home',
     }
   }
 };

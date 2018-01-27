@@ -142,6 +142,123 @@ npm run dev
 
 npm run dev 启动服务路径http://localhost:6180
 
+### 添加mock假数据测试
+
+```javascript
+// /views/index/mock.js
+GET: {
+    "code": 200,
+    "data": [
+        {
+        name: '推荐',
+        type: 0
+        },
+        {
+        name: '居家',
+        type: 1
+        },
+        {
+        name: '餐厨',
+        type: 2
+        },
+        {
+        name: '服装',
+        type: 3
+        },
+        {
+        name: '电器',
+        type: 4
+        },
+        {
+        name: '洗护',
+        type: 5
+        },
+        {
+        name: '杂货',
+        type: 6
+        }
+    ]
+    },
+    GETBOTTOM: {
+    "code": 200,
+    "data": [
+        {
+        href: '/',
+        value: '首页',
+        type: 'index'
+        },
+        {
+        href: '/',
+        value: '识物',
+        type: 'topic'
+        },
+        {
+        href: '/',
+        value: '分类',
+        type: 'cate'
+        },
+        {
+        href: '/',
+        value: '购物车',
+        type: 'cart'
+        },
+        {
+        href: '/',
+        value: '个人',
+        type: 'ucenter'
+        }
+    ]
+    }
+```
+
+```javascript
+// views/index.vue
+serviceGet() {
+    Service.get().then((data) => {
+        this.headNavData = data;
+    })
+    Service.getBottom().then((data) => {
+        this.botNavData = data;
+    })
+}
+```
+
+### service workers配置
+
+```javascript
+// webpack.cliemt.config.js
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    // auto generate service worker
+    new SWPrecachePlugin({
+      cacheId: 'ga-vue',
+      filename: 'service-worker.js',
+      minify: true,
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/]
+    })
+  )
+}
+```
+
+```javascript
+// entry-client.js
+if ('serviceWorker' in navigator) {
+  console.log("SW present !!! ");
+  navigator.serviceWorker.register('/service-worker.js', {
+      //scope: '/toto/'
+    }).then(function (registration) {
+      console.log('Service worker registered : ', registration.scope);
+    })
+    .catch(function (err) {
+      console.log("Service worker registration failed : ", err);
+    });
+
+}
+```
+
+![最终效果图](https://github.com/wqzwh/ga-vue-ssr/blob/master/src/static/img/service-demo.jpeg)
+
 ### 发布部署
 
 node服务器通过express/koa搭建环境，通过pm2启动端口服务，一般会在项目目录新建bin文件夹，然后新建相应的sh脚本命令来启动node服务。
